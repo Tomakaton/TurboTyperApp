@@ -1,0 +1,22 @@
+﻿<Window x:Class="TurboTyper.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TurboTyper"
+        xmlns:userControls="clr-namespace:TurboTyper.MVVM.View.UserControls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="750" Width="600"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        >
+    <Border BorderBrush="#515157"
+            BorderThickness="1"
+            Background="#26282b"
+            CornerRadius="10">
+        <Grid>
+            <userControls:TitleBar HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="30" MouseLeftButtonDown="TitelBar_Drag"/>
+        </Grid>
+    </Border>
+</Window>

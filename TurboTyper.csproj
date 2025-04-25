@@ -13,8 +13,23 @@
       <Folder Include="Images\" />
       <Folder Include="MVVM\Model\" />
       <Folder Include="MVVM\ViewModel\" />
-      <Folder Include="MVVM\View\" />
-      <Folder Include="Theme\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Update="MVVM\View\MainWindow.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Images\CloseWindowLogo.svg" />
+      <Resource Include="Images\CloseWindowLogo.png" />
+      <None Remove="Images\MaximizeIcon.svg" />
+      <Resource Include="Images\MaximizeIcon.png" />
+      <None Remove="Images\MinimizeLogo.svg" />
+      <Resource Include="Images\MinimizeLogo.png" />
     </ItemGroup>
 
 </Project>
