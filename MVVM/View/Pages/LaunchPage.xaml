@@ -1,0 +1,31 @@
+<Page x:Class="TurboTyper.MVVM.View.Pages.LaunchPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:TurboTyper.MVVM.View.Pages"
+      mc:Ignorable="d"
+      Title="LaunchPage" Height="700" Width="650">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Welcome To" 
+                       TextAlignment="Center"
+                       FontSize="30"
+                       FontFamily="../../../Fonts/#Lexend"
+                       Foreground="White"/>
+            <TextBlock Text="TurboTyper" 
+                       TextAlignment="Center"
+                       FontSize="70"
+                       FontFamily="../../../Fonts/#Lexend Bold"
+                       Foreground="#d43131"/>
+        </StackPanel>
+        
+        <Button Grid.Row="1" Height="80" Width="350" 
+                Content="Play" FontFamily="../../../Fonts/#Lexend"
+                FontSize="40" Style="{StaticResource PlayButton}"/>
+    </Grid>
+</Page>

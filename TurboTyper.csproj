@@ -9,7 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Fonts\" />
       <Folder Include="Images\" />
       <Folder Include="MVVM\Model\" />
       <Folder Include="MVVM\ViewModel\" />
@@ -30,6 +29,11 @@
       <Resource Include="Images\MaximizeIcon.png" />
       <None Remove="Images\MinimizeLogo.svg" />
       <Resource Include="Images\MinimizeLogo.png" />
+      <None Remove="Fonts\CascadiaMono-VariableFont_wght.ttf" />
+      <Resource Include="Fonts\CascadiaMono-VariableFont_wght.ttf" />
+      <None Remove="Fonts\CascadiaMono-Italic-VariableFont_wght.ttf" />
+      <None Remove="Fonts\Lexend-VariableFont_wght.ttf" />
+      <Resource Include="Fonts\Lexend-VariableFont_wght.ttf" />
     </ItemGroup>
 
 </Project>

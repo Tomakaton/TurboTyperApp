@@ -1,12 +1,9 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
-    <!-- 1) Base Button Style: no more built-in chrome -->
+    
     <Style x:Key="BaseButtonStyle" TargetType="Button">
-        <!-- Tell WPF to ignore the stock Button template -->
         <Setter Property="OverridesDefaultStyle" Value="True"/>
-        <!-- Layout: a single Border + ContentPresenter -->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -60,11 +57,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
-        <!-- Default background -->
-        <Setter Property="Background" Value="#292b2e"/>
-
-        <!-- Hover background -->
+        
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="Red"/>
