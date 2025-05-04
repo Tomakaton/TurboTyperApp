@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using TurboTyper.MVVM.View.Pages;
+using TurboTyper.MVVM.ViewModel;
 
 namespace TurboTyper.MVVM.View;
 

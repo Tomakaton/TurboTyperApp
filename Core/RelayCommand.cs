@@ -1,23 +1,32 @@
+using System;
 using System.Windows.Input;
 
 namespace TurboTyper.Core;
 
 public class RelayCommand : ICommand
 {
-    private ICommand _commandImplementation;
+    private readonly Action<object?> _execute;
+    private readonly Predicate<object?>? _canExecute;
+
+    public RelayCommand(Action<object?> execute, Predicate<object?>? canExecute = null)
+    {
+        _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+        _canExecute = canExecute;
+    }
+
     public bool CanExecute(object? parameter)
     {
-        return _commandImplementation.CanExecute(parameter);
+        return _canExecute == null || _canExecute(parameter);
     }
 
     public void Execute(object? parameter)
     {
-        _commandImplementation.Execute(parameter);
+        _execute(parameter);
     }
 
     public event EventHandler? CanExecuteChanged
     {
-        add => _commandImplementation.CanExecuteChanged += value;
-        remove => _commandImplementation.CanExecuteChanged -= value;
+        add { CommandManager.RequerySuggested += value; }
+        remove { CommandManager.RequerySuggested -= value; }
     }
 }

@@ -2,12 +2,13 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:TurboTyper"
-             StartupUri="MVVM/View/MainWindow.xaml">
+             StartupUri="MVVM/View/Windows/GameWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Theme/TitleBarTheme.xaml"/>
                 <ResourceDictionary Source="Theme/LaunchPageTheme.xaml"/>
+                <ResourceDictionary Source="Theme/GameSettingsBarTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
