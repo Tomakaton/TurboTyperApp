@@ -2,7 +2,7 @@ using TurboTyper.Core;
 
 namespace TurboTyper.MVVM.ViewModel;
 
-public class CharViewModel : ObsarvableObject
+public class CharViewModel : ObservableObject
 {
     private char _letter;
     private CharacterState _state;

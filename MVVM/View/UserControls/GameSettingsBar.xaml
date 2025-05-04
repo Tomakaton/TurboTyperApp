@@ -12,7 +12,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock Text="Settings" FontSize="70"
-                   FontFamily="../../../Fonts/#Lexend"/>
+                   FontFamily="../../../Fonts/#Lexend"
+                   Foreground="White"/>
         <Grid Grid.Row="1" HorizontalAlignment="Stretch" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -22,9 +23,9 @@
             <Border CornerRadius="10" Background="#292b2e" HorizontalAlignment="Stretch">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="3*" />
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Column="0" HorizontalAlignment="Stretch">
@@ -33,11 +34,15 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <RadioButton Grid.Column="0" Content="Time" FontSize="40" FontFamily="../../../Fonts/#Lexend" HorizontalAlignment="Stretch"/>
-                        <RadioButton Grid.Column="1" Content="Words" FontSize="40" FontFamily="../../../Fonts/#Lexend" HorizontalAlignment="Stretch"/>
+                        <RadioButton Grid.Column="0" Content="Time" FontFamily="../../../Fonts/#Lexend" HorizontalAlignment="Stretch" Style="{StaticResource SettingButton}"
+                                     IsChecked="{Binding Mode, Converter={StaticResource ModeToBooleanConverter}, ConverterParameter=Time}" GroupName="Mode"/>
+                        <RadioButton Grid.Column="1" Content="Words" FontFamily="../../../Fonts/#Lexend" HorizontalAlignment="Stretch" Style="{StaticResource SettingButton}"
+                                     IsChecked="{Binding Mode, Converter={StaticResource ModeToBooleanConverter}, ConverterParameter=Words}" GroupName="Mode"/>
                     </Grid>
+                    
+                    <Rectangle Grid.Column="1" Width="2" Height="Auto" Fill="#515157" VerticalAlignment="Stretch" Margin="20 10 0 10"/>
 
-                    <ItemsControl Grid.Column="2" ItemsSource="{Binding Difficulties}" HorizontalAlignment="Stretch"/>
+                    <ItemsControl Grid.Column="2" Style="{StaticResource DifficultyList}" ItemsSource="{Binding Difficulties}" HorizontalAlignment="Stretch"/>
                 </Grid>
 
             </Border>

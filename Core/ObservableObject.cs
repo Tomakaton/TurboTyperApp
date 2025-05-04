@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace TurboTyper.Core;
 
-public class ObsarvableObject : INotifyPropertyChanged
+public class ObservableObject : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 

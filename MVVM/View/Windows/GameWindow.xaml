@@ -11,7 +11,7 @@
         WindowStyle="None" 
         ResizeMode="NoResize" 
         Background="#26282b">
-        <Grid>
+        <Grid Margin=" 60 40 ">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="2*"/>

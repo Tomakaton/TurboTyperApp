@@ -8,8 +8,8 @@
                 <ControlTemplate TargetType="Button">
                     <Border
                         Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
                         CornerRadius="10"
                         Padding="{TemplateBinding Padding}">
                         <ContentPresenter 
@@ -17,6 +17,50 @@
                             VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="RadioButton" x:Key="SettingButton">
+        <Setter Property="FontSize" Value="40"/>
+        <Setter Property="FontFamily" Value="/Fonts/#Lexend"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <BulletDecorator Background="Transparent" Bullet="{x:Null}">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Margin="5,0,0,0"
+                                          RecognizesAccessKey="True"/>
+                    </BulletDecorator>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Foreground" Value="#d43131"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="ItemsControl" x:Key="DifficultyList">
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="1" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <RadioButton GroupName="Difficulty" 
+                                 Content="{Binding}" 
+                                 Style="{StaticResource SettingButton}"/>
+                </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>

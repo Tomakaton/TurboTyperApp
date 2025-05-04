@@ -3,11 +3,17 @@ using TurboTyper.Core;
 
 namespace TurboTyper.MVVM.ViewModel;
 
-public class GameSettingsViewModel : ObsarvableObject
+public class GameSettingsViewModel : ObservableObject
 {
-    private string _mode;
+    private GameMode _mode = GameMode.Time;
+    
 
-    public string Mode
+    public GameSettingsViewModel()
+    {
+        UpdateDifficulty();
+    }
+
+    public GameMode Mode
     {
         get => _mode;
         set
@@ -31,7 +37,7 @@ public class GameSettingsViewModel : ObsarvableObject
     private void UpdateDifficulty()
     {
         Difficulties.Clear();
-        if (Mode == "Time")
+        if (Mode == GameMode.Time)
         {
             Difficulties.Add("30s");
             Difficulties.Add("60s");
@@ -43,5 +49,11 @@ public class GameSettingsViewModel : ObsarvableObject
             Difficulties.Add("30");
             Difficulties.Add("50");
         }
+    }
+
+    public enum GameMode
+    {
+        Time,
+        Words
     }
 }
