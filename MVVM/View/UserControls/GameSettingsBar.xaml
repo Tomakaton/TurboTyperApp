@@ -1,0 +1,49 @@
+<UserControl x:Class="TurboTyper.MVVM.View.UserControls.GameSettingsBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:TurboTyper.MVVM.View.UserControls"
+             mc:Ignorable="d"
+             d:DesignHeight="270" d:DesignWidth="1280" Padding="30 0 30 30">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Settings" FontSize="70"
+                   FontFamily="../../../Fonts/#Lexend"/>
+        <Grid Grid.Row="1" HorizontalAlignment="Stretch" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Border CornerRadius="10" Background="#292b2e" HorizontalAlignment="Stretch">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0" HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <RadioButton Grid.Column="0" Content="Time" FontSize="40" FontFamily="../../../Fonts/#Lexend" HorizontalAlignment="Stretch"/>
+                        <RadioButton Grid.Column="1" Content="Words" FontSize="40" FontFamily="../../../Fonts/#Lexend" HorizontalAlignment="Stretch"/>
+                    </Grid>
+
+                    <ItemsControl Grid.Column="2" ItemsSource="{Binding Difficulties}" HorizontalAlignment="Stretch"/>
+                </Grid>
+
+            </Border>
+            <Button Style="{StaticResource RestartButtonStyle}" Grid.Column="2" Padding="25">
+                <Image Source="../../../Images/RestartIcon.png"/>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>
