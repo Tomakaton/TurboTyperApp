@@ -3,7 +3,7 @@ using System.Windows.Data;
 
 namespace TurboTyper.Converters;
 
-public class ModeToBooleanConverter : IValueConverter
+public class RadioEnumToBooleanConverter : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {

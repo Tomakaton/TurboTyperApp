@@ -1,4 +1,6 @@
 using System.Collections.ObjectModel;
+using System.Windows.Threading;
+using TurboTyper.Converters;
 using TurboTyper.Core;
 
 namespace TurboTyper.MVVM.ViewModel;
@@ -7,12 +9,12 @@ public class GameSettingsViewModel : ObservableObject
 {
     private GameMode _mode = GameMode.Time;
     
-
     public GameSettingsViewModel()
     {
-        UpdateDifficulty();
+        UpdateDifficulties();
+        SelectedDifficulty = Difficulties[0];
     }
-
+    
     public GameMode Mode
     {
         get => _mode;
@@ -20,34 +22,42 @@ public class GameSettingsViewModel : ObservableObject
         {
             if (SetField(ref _mode , value))
             {
-                UpdateDifficulty();
+                UpdateDifficulties();
+                SelectedDifficulty = Difficulties[0];
             }
         }
     }
+    
 
-    private ObservableCollection<string> _difficulties = new();
+    private  ObservableCollection<int> _difficulties = new();
 
-    public ObservableCollection<string> Difficulties
+    public ObservableCollection<int> Difficulties
     {
         get => _difficulties;
         set => SetField(ref _difficulties, value);
     }
     
+    private int _selectedDifficulty;
+    public int SelectedDifficulty
+    {
+        get => _selectedDifficulty;
+        set => SetField(ref _selectedDifficulty, value);
+    }
     
-    private void UpdateDifficulty()
+    private void UpdateDifficulties()
     {
         Difficulties.Clear();
         if (Mode == GameMode.Time)
         {
-            Difficulties.Add("30s");
-            Difficulties.Add("60s");
-            Difficulties.Add("120s");
+            Difficulties.Add(30);
+            Difficulties.Add(60);
+            Difficulties.Add(120);
         }
         else
         {
-            Difficulties.Add("10");
-            Difficulties.Add("30");
-            Difficulties.Add("50");
+            Difficulties.Add(10);
+            Difficulties.Add(30);
+            Difficulties.Add(50);
         }
     }
 
@@ -56,4 +66,5 @@ public class GameSettingsViewModel : ObservableObject
         Time,
         Words
     }
+    
 }

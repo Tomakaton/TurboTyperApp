@@ -11,7 +11,9 @@
                 <ResourceDictionary Source="Theme/LaunchPageTheme.xaml"/>
                 <ResourceDictionary Source="Theme/GameSettingsBarTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <converters:ModeToBooleanConverter x:Key="ModeToBooleanConverter" />
+            <converters:RadioEnumToBooleanConverter x:Key="RadioEnumToBooleanConverter" />
+            <converters:DifficultyDisplayConverter x:Key="DifficultyDisplayConverter" />
+            <converters:EqualityConverter x:Key="EqualityConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -24,21 +24,37 @@
     <Style TargetType="RadioButton" x:Key="SettingButton">
         <Setter Property="FontSize" Value="40"/>
         <Setter Property="FontFamily" Value="/Fonts/#Lexend"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
-                    <BulletDecorator Background="Transparent" Bullet="{x:Null}">
-                        <ContentPresenter HorizontalAlignment="Center"
+                    <!-- Simplified container without BulletDecorator -->
+                    <Grid Background="Transparent">
+                        <ContentPresenter x:Name="contentPresenter"
+                                          HorizontalAlignment="Center"
                                           VerticalAlignment="Center"
                                           Margin="5,0,0,0"
                                           RecognizesAccessKey="True"/>
-                    </BulletDecorator>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter Property="Foreground" Value="#d43131"/>
                         </Trigger>
                         <Trigger Property="IsChecked" Value="False">
                             <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/> 
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="BorderThickness" Value="0"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -50,17 +66,19 @@
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <UniformGrid Rows="1" />
+                    <UniformGrid Rows="1" Background="Transparent"/>
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="ItemTemplate">
+        <Setter Property="Template">
             <Setter.Value>
-                <DataTemplate>
-                    <RadioButton GroupName="Difficulty" 
-                                 Content="{Binding}" 
-                                 Style="{StaticResource SettingButton}"/>
-                </DataTemplate>
+                <ControlTemplate TargetType="ItemsControl">
+                    <Border Background="Transparent"
+                            BorderThickness="0"
+                            Padding="0">
+                        <ItemsPresenter/>
+                    </Border>
+                </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
