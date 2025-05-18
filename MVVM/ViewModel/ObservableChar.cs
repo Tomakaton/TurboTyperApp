@@ -1,11 +1,17 @@
 using TurboTyper.Core;
+using TurboTyper.MVVM.ViewModel.Enums;
 
 namespace TurboTyper.MVVM.ViewModel;
 
-public class CharViewModel : ObservableObject
+public class ObservableChar : ObservableObject
 {
     private char _letter;
-    private CharacterState _state;
+    private CharacterState _state = CharacterState.NotTyped;
+
+    public ObservableChar(char letter)
+    {
+        Letter = letter;
+    }
 
     public char Letter
     {
@@ -17,12 +23,5 @@ public class CharViewModel : ObservableObject
     {
         get => _state;
         set => SetField(ref _state , value);
-    }
-    
-    public enum CharacterState
-    {
-        NotTyped,
-        Correct,
-        Incorrect
     }
 }

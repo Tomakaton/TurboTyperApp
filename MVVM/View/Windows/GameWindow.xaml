@@ -11,10 +11,10 @@
         WindowStyle="None" 
         ResizeMode="NoResize" 
         Background="#26282b">
-        <Grid Margin=" 60 40 ">
+        <Grid Margin=" 90 70 ">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
                 <RowDefinition Height="2*"/>
+                <RowDefinition Height="4*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
@@ -25,5 +25,7 @@
                 </Grid.ColumnDefinitions>
                 <userControls:GameSettingsBar Grid.Column="0"/>
             </Grid>
+            
+            <userControls:GameContainer Grid.Row="1" />
         </Grid>
 </Window>

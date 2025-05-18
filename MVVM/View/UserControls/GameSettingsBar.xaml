@@ -35,14 +35,14 @@
                         </Grid.ColumnDefinitions>
 
                         <RadioButton Grid.Column="0" Content="Time" FontFamily="../../../Fonts/#Lexend" HorizontalAlignment="Stretch" Style="{StaticResource SettingButton}"
-                                     IsChecked="{Binding Mode, Converter={StaticResource RadioEnumToBooleanConverter}, ConverterParameter=Time}" GroupName="Mode"/>
+                                     IsChecked="{Binding Settings.Mode, Converter={StaticResource RadioEnumToBooleanConverter}, ConverterParameter=Time}" GroupName="Mode"/>
                         <RadioButton Grid.Column="1" Content="Words" FontFamily="../../../Fonts/#Lexend" HorizontalAlignment="Stretch" Style="{StaticResource SettingButton}"
-                                     IsChecked="{Binding Mode, Converter={StaticResource RadioEnumToBooleanConverter}, ConverterParameter=Words}" GroupName="Mode"/>
+                                     IsChecked="{Binding Settings.Mode, Converter={StaticResource RadioEnumToBooleanConverter}, ConverterParameter=Words}" GroupName="Mode"/>
                     </Grid>
                     
                     <Rectangle Grid.Column="1" Width="2" Height="Auto" Fill="#515157" VerticalAlignment="Stretch" Margin="20 10 0 10"/>
 
-                    <ItemsControl Grid.Column="2" ItemsSource="{Binding Difficulties}" HorizontalAlignment="Stretch" Style="{StaticResource DifficultyList}">
+                    <ItemsControl Grid.Column="2" ItemsSource="{Binding Settings.Difficulties}" HorizontalAlignment="Stretch" Style="{StaticResource DifficultyList}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <RadioButton GroupName="Difficulty" 
@@ -51,13 +51,13 @@
                                     <RadioButton.IsChecked>
                                         <MultiBinding Converter="{StaticResource EqualityConverter}">
                                             <Binding Path="."/>
-                                            <Binding Path="DataContext.SelectedDifficulty" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
+                                            <Binding Path="DataContext.Settings.SelectedDifficulty" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
                                         </MultiBinding>
                                     </RadioButton.IsChecked>
                                     <RadioButton.Content>
                                         <MultiBinding Converter="{StaticResource DifficultyDisplayConverter}">
-                                            <Binding /> <!-- The int value (like 30) -->
-                                            <Binding Path="DataContext.Mode" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
+                                            <Binding />
+                                            <Binding Path="DataContext.Settings.Mode" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
                                         </MultiBinding>
                                     </RadioButton.Content>
                                 </RadioButton>

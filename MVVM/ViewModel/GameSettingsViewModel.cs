@@ -1,12 +1,13 @@
 using System.Collections.ObjectModel;
-using System.Windows.Threading;
-using TurboTyper.Converters;
 using TurboTyper.Core;
+using TurboTyper.MVVM.ViewModel.Enums;
 
 namespace TurboTyper.MVVM.ViewModel;
 
 public class GameSettingsViewModel : ObservableObject
 {
+    
+    
     private GameMode _mode = GameMode.Time;
     
     public GameSettingsViewModel()
@@ -46,25 +47,14 @@ public class GameSettingsViewModel : ObservableObject
     
     private void UpdateDifficulties()
     {
-        Difficulties.Clear();
-        if (Mode == GameMode.Time)
-        {
-            Difficulties.Add(30);
-            Difficulties.Add(60);
-            Difficulties.Add(120);
-        }
-        else
-        {
-            Difficulties.Add(10);
-            Difficulties.Add(30);
-            Difficulties.Add(50);
-        }
-    }
+        var newValues = Mode == GameMode.Time 
+            ? new List<int> { 30, 60, 120 }
+            : new List<int> { 10, 30, 50 };
 
-    public enum GameMode
-    {
-        Time,
-        Words
+        Difficulties.Clear();
+        foreach (var val in newValues)
+        {
+            Difficulties.Add(val); // Manually triggers collection changed
+        }
     }
-    
 }
