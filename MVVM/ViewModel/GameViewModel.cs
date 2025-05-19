@@ -57,19 +57,32 @@ public class GameViewModel : ObservableObject
             "desert", "eagle", "fan", "garden", "hill", "idea", "jungle", "kite", "lake", "moon",
             "needle", "orchid", "parrot", "quartz", "rocket", "snake", "tiger", "urchin", "volcano", "water"
         ];
-        
+
         Random random = new Random();
         var words = new List<string>();
-        while (words.Sum(word => word.Length) < maxCharsLength)
+        int currentWordLength = 0;
+        int retryLimit = 100; // prevent infinite loop
+        int retries = 0;
+
+        while (currentWordLength < maxCharsLength && retries < retryLimit)
         {
             var word = wordPool[random.Next(wordPool.Length)];
-            if (words.Sum(s => s.Length) + word.Length <= maxCharsLength)
+            if (currentWordLength + word.Length <= maxCharsLength)
             {
                 words.Add(word);
+                currentWordLength += word.Length;
+                retries = 0; // reset retry counter on success
+            }
+            else
+            {
+                retries++;
             }
         }
+
         return string.Join(" ", words);
     }
+
 }
+
 
 

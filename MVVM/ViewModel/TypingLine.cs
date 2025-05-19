@@ -11,10 +11,10 @@ public class TypingLine : ObservableObject
         SetTypingLine(line);
     }
     
-    private ObservableCollection<ObservableChar> _text = new();
+    private ObservableCollection<ObservableWord> _text = new();
     private bool _isActive = true;
 
-    public ObservableCollection<ObservableChar> Text
+    public ObservableCollection<ObservableWord> Text
     {
         get => _text; 
         set => SetField(ref _text, value);
@@ -28,9 +28,9 @@ public class TypingLine : ObservableObject
     
     private void SetTypingLine(string line)
     {
-        foreach (var c in line)
+        foreach (var word in line.Split(" "))
         {
-            Text.Add(new ObservableChar(c));
+            Text.Add(new ObservableWord(word));
         }
     }
 }

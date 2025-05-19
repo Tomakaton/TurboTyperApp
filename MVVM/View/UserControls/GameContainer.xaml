@@ -11,18 +11,20 @@
         <ItemsControl ItemsSource="{Binding Game.GameText}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <!-- display chars -->
-                    <ItemsControl ItemsSource="{Binding Text}" HorizontalAlignment="Left">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
+                    <!-- display words -->
+                    <ItemsControl ItemsSource="{Binding Text}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                
-                                <TextBlock Text="{Binding Converter={StaticResource ObservableCharToStringConverter}}"
-                                           Style="{StaticResource CharStyle}"/>
+                                <!-- display letters -->
+                                <ItemsControl ItemsSource="{Binding Word}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            
+                                            <TextBlock Text="{Binding Letter}"/>
+                                            
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
                                 
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
