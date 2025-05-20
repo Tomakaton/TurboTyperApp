@@ -14,8 +14,6 @@
             </ResourceDictionary.MergedDictionaries>
             <converters:RadioEnumToBooleanConverter x:Key="RadioEnumToBooleanConverter" />
             <converters:DifficultyDisplayConverter x:Key="DifficultyDisplayConverter" />
-            <converters:EqualityConverter x:Key="EqualityConverter"/>
-            <converters:ObservableCharToStringConverter x:Key="ObservableCharToStringConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

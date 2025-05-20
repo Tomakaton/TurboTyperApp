@@ -47,13 +47,7 @@
                             <DataTemplate>
                                 <RadioButton GroupName="Difficulty" 
                                              Style="{StaticResource SettingButton}"
-                                             Validation.ErrorTemplate="{x:Null}">
-                                    <RadioButton.IsChecked>
-                                        <MultiBinding Converter="{StaticResource EqualityConverter}">
-                                            <Binding Path="."/>
-                                            <Binding Path="DataContext.Settings.SelectedDifficulty" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
-                                        </MultiBinding>
-                                    </RadioButton.IsChecked>
+                                             IsChecked="{Binding IsSelected ,Mode=TwoWay}">
                                     <RadioButton.Content>
                                         <MultiBinding Converter="{StaticResource DifficultyDisplayConverter}">
                                             <Binding />

@@ -13,7 +13,7 @@ public class GameSettingsViewModel : ObservableObject
     public GameSettingsViewModel()
     {
         UpdateDifficulties();
-        SelectedDifficulty = Difficulties[0];
+        SelectedDifficulty = Difficulties[0].Value;
     }
     
     public GameMode Mode
@@ -24,26 +24,33 @@ public class GameSettingsViewModel : ObservableObject
             if (SetField(ref _mode , value))
             {
                 UpdateDifficulties();
-                SelectedDifficulty = Difficulties[0];
+                SelectedDifficulty = Difficulties[0].Value;
             }
         }
     }
     
 
-    private  ObservableCollection<int> _difficulties = new();
-
-    public ObservableCollection<int> Difficulties
+    private ObservableCollection<DifficultyOption> _difficulties = new();
+    public ObservableCollection<DifficultyOption> Difficulties
     {
         get => _difficulties;
         set => SetField(ref _difficulties, value);
     }
-    
+
     private int _selectedDifficulty;
     public int SelectedDifficulty
     {
         get => _selectedDifficulty;
-        set => SetField(ref _selectedDifficulty, value);
+        set
+        {
+            if (SetField(ref _selectedDifficulty, value))
+            {
+                foreach (var diff in Difficulties)
+                    diff.IsSelected = diff.Value == value;
+            }
+        }
     }
+
     
     private void UpdateDifficulties()
     {
@@ -54,7 +61,10 @@ public class GameSettingsViewModel : ObservableObject
         Difficulties.Clear();
         foreach (var val in newValues)
         {
-            Difficulties.Add(val); // Manually triggers collection changed
+            var option = new DifficultyOption { Value = val };
+            option.Selected += (s, _) => SelectedDifficulty = ((DifficultyOption)s!).Value;
+            option.IsSelected = val == SelectedDifficulty;
+            Difficulties.Add(option);
         }
     }
 }

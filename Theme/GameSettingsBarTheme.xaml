@@ -22,6 +22,7 @@
     </Style>
     
     <Style TargetType="RadioButton" x:Key="SettingButton">
+        <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontSize" Value="40"/>
         <Setter Property="FontFamily" Value="/Fonts/#Lexend"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -43,19 +44,13 @@
                         <Trigger Property="IsChecked" Value="True">
                             <Setter Property="Foreground" Value="#d43131"/>
                         </Trigger>
-                        <Trigger Property="IsChecked" Value="False">
-                            <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="BorderBrush" Value="Transparent"/> 
-                            <Setter Property="BorderThickness" Value="0"/>
-                        </Trigger>
-                        <Trigger Property="IsFocused" Value="True">
-                            <Setter Property="BorderBrush" Value="Transparent"/>
-                            <Setter Property="BorderThickness" Value="0"/>
-                        </Trigger>
-                        <Trigger Property="IsKeyboardFocused" Value="True">
-                            <Setter Property="BorderBrush" Value="Transparent"/>
-                            <Setter Property="BorderThickness" Value="0"/>
-                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="IsChecked" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Foreground" Value="#bfbfbf"/>
+                        </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
