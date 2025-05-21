@@ -24,6 +24,7 @@ public class GameSessionViewModel : ObservableObject
                 Game.Mode = Settings.Mode;
             }
             
+            
         };
     }
 }

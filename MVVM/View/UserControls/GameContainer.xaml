@@ -14,18 +14,22 @@
         <viewModel:GameSessionViewModel />
     </UserControl.DataContext>
     
-    <Grid Margin="40 50">
+    <Grid Margin="40 20">
         <Grid.DataContext>
             <Binding Path="Game" />
         </Grid.DataContext>
         
         <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
         
         <!-- display timer -->
-        <TextBlock Grid.Row="0" Text="{Binding Elapsed, StringFormat={}{0:mm\\:ss\\.ff}}" />
+        <TextBlock Grid.Row="0" Text="{Binding Elapsed, StringFormat={}{0:m\\:ss}}" 
+                   FontFamily="Consolas"
+                   FontSize="50"
+                   Foreground="White"
+                   VerticalAlignment="Top"/>
 
         <!-- display lines -->
         <ItemsControl Grid.Row="1" ItemsSource="{Binding GameText}">
@@ -50,7 +54,8 @@
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                         
-                                            <TextBlock Text="{Binding Letter}" Style="{StaticResource CharStyle}"/>
+                                            <TextBlock Text="{Binding Letter}" Style="{StaticResource CharStyle}"
+                                                       Background="{Binding State, Converter={StaticResource CharStateToColorConverter}}"/>
                         
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>

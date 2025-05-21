@@ -94,6 +94,11 @@ public class GameViewModel : ObservableObject
     
     private readonly Stopwatch _stopwatch = new Stopwatch();
     private readonly DispatcherTimer _uiTimer;
+    private const int MaxLines = 3;
+    private int _currentLine = 0;
+    private int _currentWordIndex = 0;
+    private int _currentCharIndex = 0; 
+    
 
     private TimeSpan _elapsed;
     public TimeSpan Elapsed
@@ -110,8 +115,51 @@ public class GameViewModel : ObservableObject
             _stopwatch.Start();
             _uiTimer.Start();
         }
+        
+        if (IsLetterOrSpace(c))
+        {
+            var currentLine = GameText[_currentLine];
+            var currentWord = currentLine.Text[_currentWordIndex];
+            var currentChar = currentWord.Word[_currentCharIndex];
+            
+            if (currentChar.Letter == ' ')
+            {
+                if (c == ' ')
+                {
+                    _currentWordIndex++;
+                }
+            }
+            else if (c == currentChar.Letter)
+            {
+                currentChar.State = CharacterState.Correct;
+                _currentCharIndex++;
+                if (_currentCharIndex == currentWord.Word.Count)
+                {
+                    _currentWordIndex++;
+                    _currentCharIndex = 0;
+                }
+            }
+            else if (c != currentChar.Letter)
+            {
+                currentChar.State = CharacterState.Incorrect;
+                _currentCharIndex++;
+                if (_currentCharIndex == currentWord.Word.Count)
+                {
+                    _currentWordIndex++;
+                    _currentCharIndex = 0;
+                }
+            }
+            
+        }
+    }
+
+    private bool IsLetterOrSpace(char c)
+    {
+        bool isValid = char.IsLetter(c) || c == ' ' || c == ':' || c == ',' || c == '.';
+        return isValid;
     }
 }
+
 
 
 

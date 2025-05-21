@@ -22,7 +22,7 @@ public partial class GameContainer : UserControl
     private void OnPreviewTextInput(object sender, TextCompositionEventArgs e)
     {
         // e.Text will be the character(s) typed
-        foreach (char c in e.Text)
+        foreach (var c in e.Text)
         {
             Vm.ProcessInput(c);
         }

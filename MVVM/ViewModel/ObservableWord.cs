@@ -11,11 +11,19 @@ public class ObservableWord : ObservableObject
     }
     
     private ObservableCollection<ObservableChar> _word = new();
+    private bool _isWritten = false;
+    
 
     public ObservableCollection<ObservableChar> Word
     {
         get => _word; 
         set => SetField(ref _word, value);
+    }
+    
+    public bool IsWritten
+    {
+        get => _isWritten;
+        set => SetField(ref _isWritten, value);
     }
     
     private void SetObservableWord(string word)
