@@ -1,4 +1,6 @@
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Windows.Threading;
 using TurboTyper.Core;
 using TurboTyper.MVVM.ViewModel.Enums;
 
@@ -13,12 +15,20 @@ public class GameViewModel : ObservableObject
     public GameViewModel()
     {
         SetGameText(3);
+
+        // set up a DispatcherTimer to update Elapsed every 100ms
+        _uiTimer = new DispatcherTimer {
+            Interval = TimeSpan.FromMilliseconds(100)
+        };
+        _uiTimer.Tick += (_,_) => {
+            Elapsed = _stopwatch.Elapsed;
+        };
     }
 
     public int SelectedDifficulty
     {
         get => _selectedDifficulty;
-        set => SetField(ref _selectedDifficulty, value); 
+        set => SetField(ref _selectedDifficulty, value);
     }
 
     public GameMode Mode
@@ -33,7 +43,7 @@ public class GameViewModel : ObservableObject
         set => SetField(ref _gameText, value);
     }
 
-    public void SetGameText(int lines)
+    private void SetGameText(int lines)
     {
         GameText.Clear();
         for (int i = 0; i < lines; i++)
@@ -42,7 +52,7 @@ public class GameViewModel : ObservableObject
         }
     }
     
-    public static string GetRandomLine(int length, int maxCharsLength = 58)
+    private static string GetRandomLine(int length, int maxCharsLength = 58)
     {
         string[] wordPool =
         [
@@ -81,7 +91,26 @@ public class GameViewModel : ObservableObject
 
         return string.Join(" ", words);
     }
+    
+    private readonly Stopwatch _stopwatch = new Stopwatch();
+    private readonly DispatcherTimer _uiTimer;
 
+    private TimeSpan _elapsed;
+    public TimeSpan Elapsed
+    {
+        get => _elapsed;
+        private set => SetField(ref _elapsed, value);
+    }
+    
+
+    public void ProcessInput(char c)
+    {
+        if (!_stopwatch.IsRunning)
+        {
+            _stopwatch.Start();
+            _uiTimer.Start();
+        }
+    }
 }
 
 

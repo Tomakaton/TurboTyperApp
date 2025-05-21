@@ -28,9 +28,14 @@ public class TypingLine : ObservableObject
     
     private void SetTypingLine(string line)
     {
-        foreach (var word in line.Split(" "))
+        for (int i = 0; i < line.Split(" ").Length; i++)
         {
+            var word = line.Split(" ")[i];
             Text.Add(new ObservableWord(word));
+            if (i < line.Split(" ").Length - 1)
+            {
+                Text.Add(new ObservableWord(" ")); // Add a space between words
+            }
         }
     }
 }

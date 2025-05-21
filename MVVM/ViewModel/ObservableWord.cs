@@ -7,7 +7,7 @@ public class ObservableWord : ObservableObject
 {
     public ObservableWord(string word)
     {
-        SetObserableWord(word);
+        SetObservableWord(word);
     }
     
     private ObservableCollection<ObservableChar> _word = new();
@@ -18,7 +18,7 @@ public class ObservableWord : ObservableObject
         set => SetField(ref _word, value);
     }
     
-    private void SetObserableWord(string word)
+    private void SetObservableWord(string word)
     {
         foreach (var c in word)
         {
