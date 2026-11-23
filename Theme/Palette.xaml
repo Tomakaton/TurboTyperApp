@@ -1,0 +1,38 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Colors -->
+    <Color x:Key="BgPrimaryColor">#26282b</Color>
+    <Color x:Key="BgSecondaryColor">#292b2e</Color>
+    <Color x:Key="BgHoverColor">#383b40</Color>
+    <Color x:Key="BorderMutedColor">#515157</Color>
+
+    <Color x:Key="AccentRedColor">#d43131</Color>
+    <Color x:Key="AccentRedHoverColor">#de4040</Color>
+    <Color x:Key="AccentRedPressedColor">#e04f4f</Color>
+    <Color x:Key="SkippedRedColor">#7e2a2a</Color>
+
+    <Color x:Key="TextPrimaryColor">#e8e6e3</Color>
+    <Color x:Key="TextMutedColor">#646669</Color>
+    <Color x:Key="TextHoverColor">#bfbfbf</Color>
+
+    <!-- Brushes -->
+    <SolidColorBrush x:Key="BgPrimaryBrush" Color="{StaticResource BgPrimaryColor}"/>
+    <SolidColorBrush x:Key="BgSecondaryBrush" Color="{StaticResource BgSecondaryColor}"/>
+    <SolidColorBrush x:Key="BgHoverBrush" Color="{StaticResource BgHoverColor}"/>
+    <SolidColorBrush x:Key="BorderMutedBrush" Color="{StaticResource BorderMutedColor}"/>
+
+    <SolidColorBrush x:Key="AccentRedBrush" Color="{StaticResource AccentRedColor}"/>
+    <SolidColorBrush x:Key="AccentRedHoverBrush" Color="{StaticResource AccentRedHoverColor}"/>
+    <SolidColorBrush x:Key="AccentRedPressedBrush" Color="{StaticResource AccentRedPressedColor}"/>
+    <SolidColorBrush x:Key="SkippedRedBrush" Color="{StaticResource SkippedRedColor}"/>
+
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimaryColor}"/>
+    <SolidColorBrush x:Key="TextMutedBrush" Color="{StaticResource TextMutedColor}"/>
+    <SolidColorBrush x:Key="TextHoverBrush" Color="{StaticResource TextHoverColor}"/>
+
+    <!-- Fonts -->
+    <FontFamily x:Key="LexendFont">/Fonts/#Lexend</FontFamily>
+    <FontFamily x:Key="CascadiaMonoFont">/Fonts/#Cascadia Mono</FontFamily>
+
+</ResourceDictionary>

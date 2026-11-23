@@ -5,23 +5,25 @@ namespace TurboTyper.MVVM.ViewModel;
 
 public class ObservableChar : ObservableObject
 {
-    private char _letter;
     private CharacterState _state = CharacterState.NotTyped;
+    private bool _isCurrent;
 
     public ObservableChar(char letter)
     {
         Letter = letter;
     }
 
-    public char Letter
-    {
-        get => _letter;
-        set => SetField(ref _letter, value);
-    }
+    public char Letter { get; }
 
     public CharacterState State
     {
         get => _state;
-        set => SetField(ref _state , value);
+        set => SetField(ref _state, value);
+    }
+
+    public bool IsCurrent
+    {
+        get => _isCurrent;
+        set => SetField(ref _isCurrent, value);
     }
 }

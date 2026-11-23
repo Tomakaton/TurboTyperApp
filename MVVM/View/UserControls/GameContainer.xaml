@@ -3,40 +3,69 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:TurboTyper.MVVM.View.UserControls"
              xmlns:viewModel="clr-namespace:TurboTyper.MVVM.ViewModel"
              mc:Ignorable="d"
-             d:DesignHeight="620" d:DesignWidth="1920"
+             d:DataContext="{d:DesignInstance Type=viewModel:GameSessionViewModel}"
+             d:DesignHeight="420" d:DesignWidth="960"
              PreviewTextInput="OnPreviewTextInput"
+             PreviewKeyDown="OnPreviewKeyDown"
+             MouseDown="OnMouseDown"
              Focusable="True"
-             Loaded="GameContainer_Loaded">
-    <UserControl.DataContext>
-        <viewModel:GameSessionViewModel />
-    </UserControl.DataContext>
-    
-    <Grid Margin="40 20">
-        <Grid.DataContext>
-            <Binding Path="Game" />
-        </Grid.DataContext>
-        
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        <!-- display timer -->
-        <TextBlock Grid.Row="0" Text="{Binding Elapsed, StringFormat={}{0:m\\:ss}}" 
-                   FontFamily="Consolas"
-                   FontSize="50"
-                   Foreground="White"
-                   VerticalAlignment="Top"/>
+             FocusVisualStyle="{x:Null}"
+             Background="Transparent"
+             Loaded="GameContainer_Loaded"
+             Unloaded="GameContainer_Unloaded"
+             DataContextChanged="GameContainer_DataContextChanged">
 
-        <!-- display lines -->
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding GameText}">
+    <Grid DataContext="{Binding Game}" Margin="0,12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Mode-aware HUD -->
+        <Grid Grid.Row="0" Margin="0,0,0,28">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Text="{Binding PrimaryHudText}"
+                       FontFamily="{StaticResource CascadiaMonoFont}"
+                       FontSize="42"
+                       FontWeight="SemiBold"
+                       Foreground="{StaticResource AccentRedBrush}"
+                       VerticalAlignment="Bottom"/>
+
+            <TextBlock Grid.Column="1"
+                       Text="{Binding SecondaryHudText}"
+                       FontFamily="{StaticResource LexendFont}"
+                       FontSize="20"
+                       Foreground="{StaticResource TextMutedBrush}"
+                       Margin="20,0,0,7"
+                       VerticalAlignment="Bottom"/>
+
+            <TextBlock Grid.Column="2"
+                       Text="Esc to restart  •  Ctrl+Backspace clears word"
+                       FontFamily="{StaticResource LexendFont}"
+                       FontSize="14"
+                       Foreground="{StaticResource TextMutedBrush}"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Bottom"
+                       Margin="0,0,0,8"/>
+        </Grid>
+
+        <!-- Rolling 3-line display -->
+        <ItemsControl Grid.Row="1"
+                      ItemsSource="{Binding GameText}"
+                      Focusable="False">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <!-- display words -->
-                    <ItemsControl ItemsSource="{Binding Text}" Margin="0 10">
+                    <ItemsControl ItemsSource="{Binding Text}"
+                                  Margin="0,10"
+                                  Focusable="False">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Horizontal"/>
@@ -44,27 +73,26 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <!-- display letters -->
-                                <ItemsControl ItemsSource="{Binding Word}">
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel Orientation="Horizontal"/>
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                        
-                                            <TextBlock Text="{Binding Letter}" Style="{StaticResource CharStyle}"
-                                                       Background="{Binding State, Converter={StaticResource CharStateToColorConverter}}"/>
-                        
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
+                                <Border Style="{StaticResource WordBorderStyle}">
+                                    <ItemsControl ItemsSource="{Binding Word}" Focusable="False">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Style="{StaticResource CharBorderStyle}">
+                                                    <TextBlock Text="{Binding Letter}"
+                                                               Style="{StaticResource CharTextStyle}"/>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-
-                    
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

@@ -3,55 +3,99 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:TurboTyper.MVVM.View.UserControls"
+             xmlns:vm="clr-namespace:TurboTyper.MVVM.ViewModel"
              mc:Ignorable="d"
-             d:DesignHeight="270" d:DesignWidth="1280" Padding="30 0 30 30">
+             d:DataContext="{d:DesignInstance Type=vm:GameSessionViewModel}"
+             d:DesignHeight="160" d:DesignWidth="960">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Settings" FontSize="70"
-                   FontFamily="../../../Fonts/#Lexend"
-                   Foreground="White"/>
-        <Grid Grid.Row="1" HorizontalAlignment="Stretch" >
+
+        <Grid Grid.Row="0" Margin="0,0,0,14">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Border CornerRadius="10" Background="#292b2e" HorizontalAlignment="Stretch">
+
+            <TextBlock Grid.Column="0"
+                       Text="Settings"
+                       FontSize="40"
+                       FontFamily="{StaticResource LexendFont}"
+                       Foreground="{StaticResource TextPrimaryBrush}"
+                       VerticalAlignment="Center"/>
+
+            <Button Grid.Column="1"
+                    Content="Main Menu"
+                    Style="{StaticResource SecondaryButton}"
+                    Command="{Binding HomeCommand}"
+                    Focusable="False"
+                    FontSize="15"
+                    Padding="16,8"
+                    VerticalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="1" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="12"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Border CornerRadius="10"
+                    Background="{StaticResource BgSecondaryBrush}"
+                    HorizontalAlignment="Stretch">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Column="0" HorizontalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <RadioButton Grid.Column="0" Content="Time" FontFamily="../../../Fonts/#Lexend" HorizontalAlignment="Stretch" Style="{StaticResource SettingButton}"
-                                     IsChecked="{Binding Settings.Mode, Converter={StaticResource RadioEnumToBooleanConverter}, ConverterParameter=Time}" GroupName="Mode"/>
-                        <RadioButton Grid.Column="1" Content="Words" FontFamily="../../../Fonts/#Lexend" HorizontalAlignment="Stretch" Style="{StaticResource SettingButton}"
-                                     IsChecked="{Binding Settings.Mode, Converter={StaticResource RadioEnumToBooleanConverter}, ConverterParameter=Words}" GroupName="Mode"/>
+                        <RadioButton Grid.Column="0"
+                                     Content="Time"
+                                     HorizontalAlignment="Stretch"
+                                     Focusable="False"
+                                     Style="{StaticResource SettingButton}"
+                                     IsChecked="{Binding Settings.Mode, Converter={StaticResource RadioEnumToBooleanConverter}, ConverterParameter=Time}"
+                                     GroupName="Mode"/>
+                        <RadioButton Grid.Column="1"
+                                     Content="Words"
+                                     HorizontalAlignment="Stretch"
+                                     Focusable="False"
+                                     Style="{StaticResource SettingButton}"
+                                     IsChecked="{Binding Settings.Mode, Converter={StaticResource RadioEnumToBooleanConverter}, ConverterParameter=Words}"
+                                     GroupName="Mode"/>
                     </Grid>
-                    
-                    <Rectangle Grid.Column="1" Width="2" Height="Auto" Fill="#515157" VerticalAlignment="Stretch" Margin="20 10 0 10"/>
 
-                    <ItemsControl Grid.Column="2" ItemsSource="{Binding Settings.Difficulties}" HorizontalAlignment="Stretch" Style="{StaticResource DifficultyList}">
+                    <Rectangle Grid.Column="1"
+                               Width="2"
+                               Fill="{StaticResource BorderMutedBrush}"
+                               VerticalAlignment="Stretch"
+                               Margin="12,12"/>
+
+                    <ItemsControl Grid.Column="2"
+                                  ItemsSource="{Binding Settings.Difficulties}"
+                                  HorizontalAlignment="Stretch"
+                                  Focusable="False"
+                                  Style="{StaticResource DifficultyList}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <RadioButton GroupName="Difficulty" 
+                                <RadioButton GroupName="Difficulty"
+                                             Focusable="False"
                                              Style="{StaticResource SettingButton}"
-                                             IsChecked="{Binding IsSelected ,Mode=TwoWay}">
+                                             IsChecked="{Binding IsSelected, Mode=TwoWay}">
                                     <RadioButton.Content>
                                         <MultiBinding Converter="{StaticResource DifficultyDisplayConverter}">
-                                            <Binding />
-                                            <Binding Path="DataContext.Settings.Mode" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
+                                            <Binding/>
+                                            <Binding Path="DataContext.Settings.Mode" RelativeSource="{RelativeSource AncestorType=ItemsControl}"/>
                                         </MultiBinding>
                                     </RadioButton.Content>
                                 </RadioButton>
@@ -59,10 +103,14 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </Grid>
-
             </Border>
-            <Button Style="{StaticResource RestartButtonStyle}" Grid.Column="2" Padding="25">
-                <Image Source="../../../Images/RestartIcon.png"/>
+
+            <Button Grid.Column="2"
+                    Style="{StaticResource RestartButtonStyle}"
+                    Command="{Binding RestartCommand}"
+                    Focusable="False"
+                    ToolTip="Restart Test (Esc)">
+                <Image Source="/Images/RestartIcon.png" Width="26" Height="26"/>
             </Button>
         </Grid>
     </Grid>

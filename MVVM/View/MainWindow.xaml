@@ -3,33 +3,54 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TurboTyper"
         xmlns:userControls="clr-namespace:TurboTyper.MVVM.View.UserControls"
-        xmlns:pages="clr-namespace:TurboTyper.MVVM.View.Pages"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="650"
+        Title="TurboTyper"
+        Width="1280"
+        Height="800"
+        MinWidth="1100"
+        MinHeight="680"
+        WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        Background="Transparent"
-        AllowsTransparency="True"
-        >
-    <Border BorderBrush="#515157"
-            BorderThickness="1"
-            Background="#26282b"
-            CornerRadius="10">
+        ResizeMode="CanResize"
+        Background="{StaticResource BgPrimaryBrush}">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="32"
+                      ResizeBorderThickness="6"
+                      CornerRadius="10"
+                      GlassFrameThickness="0"
+                      UseAeroCaptionButtons="False"/>
+    </WindowChrome.WindowChrome>
+
+    <Border Background="{StaticResource BgPrimaryBrush}">
+        <Border.Style>
+            <Style TargetType="Border">
+                <Setter Property="BorderBrush" Value="{StaticResource BorderMutedBrush}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Padding" Value="0"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}" Value="Maximized">
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="CornerRadius" Value="0"/>
+                        <Setter Property="Padding" Value="7"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="32"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Your Title Bar -->
-            <userControls:TitleBar HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="30" MouseLeftButtonDown="TitelBar_Drag"/>
+            <userControls:TitleBar Grid.Row="0"/>
 
-            <!-- Main Content Frame -->
-            <Frame x:Name="MainFrame"
-                   Grid.Row="1"
-                   NavigationUIVisibility="Hidden"
-                   Background="Transparent"/>
+            <ContentControl Grid.Row="1"
+                            Content="{Binding CurrentView}"
+                            Focusable="False"/>
         </Grid>
     </Border>
 </Window>

@@ -1,20 +1,32 @@
 ﻿<Application x:Class="TurboTyper.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:TurboTyper"
              xmlns:converters="clr-namespace:TurboTyper.Converters"
-             StartupUri="MVVM/View/Windows/GameWindow.xaml">
+             xmlns:vm="clr-namespace:TurboTyper.MVVM.ViewModel"
+             xmlns:views="clr-namespace:TurboTyper.MVVM.View.UserControls"
+             StartupUri="MVVM/View/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/Palette.xaml"/>
                 <ResourceDictionary Source="Theme/TitleBarTheme.xaml"/>
                 <ResourceDictionary Source="Theme/LaunchPageTheme.xaml"/>
                 <ResourceDictionary Source="Theme/GameSettingsBarTheme.xaml"/>
                 <ResourceDictionary Source="Theme/WritingTextTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <converters:RadioEnumToBooleanConverter x:Key="RadioEnumToBooleanConverter" />
-            <converters:DifficultyDisplayConverter x:Key="DifficultyDisplayConverter" />
-            <converters:CharStateToColorConverter x:Key="CharStateToColorConverter" />
+
+            <converters:RadioEnumToBooleanConverter x:Key="RadioEnumToBooleanConverter"/>
+            <converters:DifficultyDisplayConverter x:Key="DifficultyDisplayConverter"/>
+
+            <DataTemplate DataType="{x:Type vm:LaunchViewModel}">
+                <views:LaunchView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:GameSessionViewModel}">
+                <views:GameView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ResultsViewModel}">
+                <views:ResultsView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

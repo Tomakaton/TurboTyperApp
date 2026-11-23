@@ -3,29 +3,53 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:TurboTyper.MVVM.View.UserControls"
              mc:Ignorable="d"
-             d:DesignHeight="30" d:DesignWidth="600">
-    <Border CornerRadius="10,10,0,0"  Background="#292b2e">
+             d:DesignHeight="32" d:DesignWidth="800">
+    <Border CornerRadius="10,10,0,0" Background="{StaticResource BgSecondaryBrush}">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="42"/>
+                <ColumnDefinition Width="42"/>
+                <ColumnDefinition Width="42"/>
             </Grid.ColumnDefinitions>
-        
-            <Button Grid.Column="1" Style="{StaticResource TitleBarButton}" Click="Minimize_OnClick">
-                <Image Source="../../../Images/MinimizeLogo.png" Width="16" Height="16"/>
+
+            <TextBlock Grid.Column="0"
+                       Text="TurboTyper"
+                       FontFamily="{StaticResource LexendFont}"
+                       FontSize="13"
+                       FontWeight="SemiBold"
+                       Foreground="{StaticResource TextMutedBrush}"
+                       VerticalAlignment="Center"
+                       Margin="14,0,0,0"/>
+
+            <Button Grid.Column="1"
+                    Style="{StaticResource TitleBarButton}"
+                    Click="Minimize_OnClick"
+                    WindowChrome.IsHitTestVisibleInChrome="True"
+                    Focusable="False"
+                    ToolTip="Minimize">
+                <Image Source="/Images/MinimizeLogo.png" Width="14" Height="14"/>
             </Button>
-            <Button Grid.Column="2" Style="{StaticResource TitleBarButton}" Click="Maximize_OnClick">
-                <Image Source="../../../Images/MaximizeIcon.png" Width="16" Height="16"/>
+
+            <Button Grid.Column="2"
+                    Style="{StaticResource TitleBarButton}"
+                    Click="Maximize_OnClick"
+                    WindowChrome.IsHitTestVisibleInChrome="True"
+                    Focusable="False"
+                    ToolTip="Maximize / Restore">
+                <Image Source="/Images/MaximizeIcon.png" Width="14" Height="14"/>
             </Button>
-            <Button Grid.Column="3" Click="CloseWindow_OnClick"
+
+            <Button Grid.Column="3"
                     Style="{StaticResource CloseButton}"
+                    Click="CloseWindow_OnClick"
+                    WindowChrome.IsHitTestVisibleInChrome="True"
+                    Focusable="False"
                     Margin="0"
-                    Padding="0">
-                <Image Source="../../../Images/CloseWindowLogo.png" Width="16" Height="16"/>
+                    Padding="0"
+                    ToolTip="Close">
+                <Image Source="/Images/CloseWindowLogo.png" Width="14" Height="14"/>
             </Button>
         </Grid>
     </Border>

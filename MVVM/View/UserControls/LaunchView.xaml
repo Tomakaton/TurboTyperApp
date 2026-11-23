@@ -1,0 +1,52 @@
+<UserControl x:Class="TurboTyper.MVVM.View.UserControls.LaunchView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:TurboTyper.MVVM.ViewModel"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:LaunchViewModel}"
+             d:DesignHeight="680" d:DesignWidth="1100">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Welcome To"
+                       TextAlignment="Center"
+                       FontSize="30"
+                       FontFamily="{StaticResource LexendFont}"
+                       Foreground="{StaticResource TextPrimaryBrush}"
+                       Margin="0,0,0,6"/>
+
+            <TextBlock Text="TurboTyper"
+                       TextAlignment="Center"
+                       FontSize="76"
+                       FontWeight="Bold"
+                       FontFamily="{StaticResource LexendFont}"
+                       Foreground="{StaticResource AccentRedBrush}"
+                       Margin="0,0,0,12"/>
+
+            <TextBlock Text="Test your speed and accuracy with zero distractions."
+                       TextAlignment="Center"
+                       FontSize="18"
+                       FontFamily="{StaticResource LexendFont}"
+                       Foreground="{StaticResource TextMutedBrush}"
+                       Margin="0,0,0,48"/>
+
+            <Button Height="74"
+                    Width="320"
+                    Content="Play"
+                    FontSize="34"
+                    IsDefault="True"
+                    Style="{StaticResource PlayButton}"
+                    Command="{Binding PlayCommand}"
+                    HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

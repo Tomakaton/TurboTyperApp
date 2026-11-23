@@ -5,32 +5,33 @@ namespace TurboTyper.MVVM.ViewModel;
 
 public class ObservableWord : ObservableObject
 {
+    private ObservableCollection<ObservableChar> _word = new();
+    private bool _isWritten;
+    private bool _isCaretAtWordEnd;
+
     public ObservableWord(string word)
     {
-        SetObservableWord(word);
+        foreach (char c in word)
+        {
+            Word.Add(new ObservableChar(c));
+        }
     }
-    
-    private ObservableCollection<ObservableChar> _word = new();
-    private bool _isWritten = false;
-    
 
     public ObservableCollection<ObservableChar> Word
     {
-        get => _word; 
+        get => _word;
         set => SetField(ref _word, value);
     }
-    
+
     public bool IsWritten
     {
         get => _isWritten;
         set => SetField(ref _isWritten, value);
     }
-    
-    private void SetObservableWord(string word)
+
+    public bool IsCaretAtWordEnd
     {
-        foreach (var c in word)
-        {
-            Word.Add(new ObservableChar(c));
-        }
+        get => _isCaretAtWordEnd;
+        set => SetField(ref _isCaretAtWordEnd, value);
     }
 }

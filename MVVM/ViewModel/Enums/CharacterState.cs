@@ -4,5 +4,6 @@ public enum CharacterState
 {
     NotTyped,
     Correct,
-    Incorrect
+    Incorrect,
+    Skipped
 }

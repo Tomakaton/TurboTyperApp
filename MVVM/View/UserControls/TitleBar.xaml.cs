@@ -12,27 +12,26 @@ public partial class TitleBar : UserControl
 
     private void Minimize_OnClick(object sender, RoutedEventArgs e)
     {
-        if (Application.Current.MainWindow != null) Application.Current.MainWindow.WindowState = WindowState.Minimized;
+        var window = Window.GetWindow(this);
+        if (window is not null)
+        {
+            window.WindowState = WindowState.Minimized;
+        }
     }
 
     private void Maximize_OnClick(object sender, RoutedEventArgs e)
     {
-        if (Application.Current.MainWindow != null)
+        var window = Window.GetWindow(this);
+        if (window is not null)
         {
-            if (Application.Current.MainWindow.WindowState == WindowState.Maximized)
-            {
-                Application.Current.MainWindow.WindowState = WindowState.Normal;
-            }
-            else
-            {
-                Application.Current.MainWindow.WindowState = WindowState.Maximized;
-            }
+            window.WindowState = window.WindowState == WindowState.Maximized
+                ? WindowState.Normal
+                : WindowState.Maximized;
         }
     }
 
     private void CloseWindow_OnClick(object sender, RoutedEventArgs e)
     {
-        if (Application.Current.MainWindow != null) Application.Current.MainWindow.Close();
-        
+        Window.GetWindow(this)?.Close();
     }
 }
